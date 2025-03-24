@@ -1,3 +1,5 @@
+local config = require("lazyvim.config")
+local header = require("dashboard.theme.header")
 return {
   -- messages, cmdline and the popupmenu
   {
@@ -156,17 +158,19 @@ return {
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
+    theme = "hyper",
     opts = function(_, opts)
-      local logo = [[
-        ██████╗ ███████╗██╗   ██╗ █████╗ ███████╗██╗     ██╗███████╗███████╗
-        ██╔══██╗██╔════╝██║   ██║██╔══██╗██╔════╝██║     ██║██╔════╝██╔════╝
-        ██║  ██║█████╗  ██║   ██║███████║███████╗██║     ██║█████╗  █████╗  
-        ██║  ██║██╔══╝  ╚██╗ ██╔╝██╔══██║╚════██║██║     ██║██╔══╝  ██╔══╝  
-        ██████╔╝███████╗ ╚████╔╝ ██║  ██║███████║███████╗██║██║     ███████╗
-        ╚═════╝ ╚══════╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝╚═╝     ╚══════╝
-      ]]
+      opts.config = opts.config or {}
 
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
+      local status_ok, random_logo = pcall(require, "random-logo")
+      if not status_ok then
+        print("Error loading random-logo plugin")
+        return
+      end
+
+      local logo = random_logo.randomizer()
+
+      logo = string.rep("\n", 4) .. logo .. "\n\n"
       opts.config.header = vim.split(logo, "\n")
     end,
   },

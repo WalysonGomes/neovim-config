@@ -17,6 +17,7 @@ return {
         "java",
         "php",
         "rust",
+        "python",
         "scss",
         "sql",
         "svelte",
