@@ -117,15 +117,21 @@ keymap.set("n", "<leader>i", function()
 end)
 
 -- nvim-spectre
-vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
+keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
   desc = "Toggle Spectre",
 })
-vim.keymap.set("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+keymap.set("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
   desc = "Search current word",
 })
-vim.keymap.set("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+keymap.set("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
   desc = "Search current word",
 })
-vim.keymap.set("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+keymap.set("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
   desc = "Search on current file",
 })
+
+-- nvim-coverage
+keymap.set("n", "<leader>tL", "<cmd>CoverageLoad<cr>", { desc = "Load Coverage Report" })
+keymap.set("n", "<leader>tu", "<cmd>CoverageSummary<cr>", { desc = "Summary Coverage" })
+keymap.set("n", "<leader>tg", "<cmd>CoverageToggle<cr>", { desc = "Toggle Coverage" })
+keymap.set("n", "<leader>tc", "<cmd>CoverageClear<cr>", { desc = "Clear Coverage" })
